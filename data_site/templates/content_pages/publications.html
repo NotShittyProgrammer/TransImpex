@@ -1,0 +1,241 @@
+<style>
+    .media-section {
+        padding: 60px 20px 2.5rem 40px;
+        text-align: center;
+        overflow-x: hidden;
+        background-color: #fff; /* Set background to white */
+    }
+
+    .media-section h2 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #0B132A;
+        margin-bottom: 20px;
+        font-family: 'Rubik', sans-serif;
+    }
+
+    .card-container {
+        max-width: 90%;
+        margin: 0 auto;
+        padding-bottom: 60px;
+        overflow: hidden;
+    }
+
+    .swiper-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    .card-article {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 400px; /* Set a fixed height to ensure uniformity */
+        background: #fff;
+        border-radius: 1.25rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s;
+        padding: 15px;
+        border: 2px solid #C9C9C9;
+        flex-shrink: 0;
+        width: auto;
+        cursor: pointer;
+    }
+
+    .card-image {
+        display: none;
+        margin-bottom: 10px;
+        background-color: var(--first-color-light);
+        border-radius: 15px;
+        width: 100%;
+        height: 260px; /* Set a fixed height for images */
+    }
+
+    .card-article.has-image .card-image {
+        display: block;
+    }
+
+    .card-img {
+        width: 100%;
+        height: 100%; /* Fill the container while keeping aspect ratio */
+        object-fit: cover;
+        border-radius: 15px;
+    }
+
+    .card-data {
+        padding: 1rem;
+        text-align: center;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .card-name {
+        font-size: 20px;
+        font-weight: 700;
+        color: #0B132A;
+        font-family: 'Rubik', sans-serif;
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
+    }
+
+    .card-description {
+        font-size: 14px;
+        font-weight: 400;
+        color: #4F5665;
+        font-family: 'Rubik', sans-serif;
+        line-height: 1.5;
+    }
+
+    /* Swiper Pagination with Left Padding */
+    .media-swiper-pagination {
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 10px;
+        margin-top: 20px;
+    }
+
+    .media-swiper-pagination .swiper-pagination-bullet {
+        width: 15px !important;
+        height: 15px !important;
+        background-color: #C9C9C9 !important;
+        opacity: 1;
+        border-radius: 50%;
+        margin: 0 4px;
+    }
+
+    .media-swiper-pagination .swiper-pagination-bullet-active {
+        background-color: #F53838 !important;
+        width: 45px !important;
+        height: 15px !important;
+        border-radius: 7.5px !important;
+    }
+
+    /* Carousel Controls */
+    .carousel-controls {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 10px;
+        position: relative;
+        padding-right: 20px;
+    }
+
+    .carousel-button {
+        background-color: #F53838;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .carousel-button:hover {
+        background-color: #d12727;
+        transform: scale(1.05);
+    }
+
+    .carousel-button:active {
+        background-color: #b91d1d;
+        transform: scale(0.95);
+    }
+
+    /* Hide Swiper arrows */
+    .swiper-button-prev, .swiper-button-next {
+        display: none;
+    }
+</style>
+
+
+<section class="media-section">
+    <h2>Publications in Media</h2>
+
+    <!-- Swiper Container for Publications -->
+    <div class="swiper card-container">
+        <div class="swiper-wrapper">
+            {% if articles %}
+                {% for article in articles %}
+                    <article class="card-article swiper-slide{% if article.image.url %} has-image{% endif %}">
+                        {% if article.image.url %}
+                        <div class="card-image">
+                            <img src="{{ article.image.url }}" alt="{{ article.title }}" class="card-img" onerror="this.parentElement.style.display='none'; this.parentElement.parentElement.classList.remove('has-image')">
+                        </div>
+                        {% endif %}
+                        <div class="card-data">
+                            <h3 class="card-name">{{ article.title }}</h3>
+                            <div class="card-description">
+                                {{ article.description|striptags|safe }}
+                             </div>
+                             
+                        </div>
+                    </article>
+                {% endfor %}
+            {% else %}
+                <p>No articles available.</p>
+            {% endif %}
+        </div>
+        
+        <!-- Pagination for Swiper -->
+        <div class="media-swiper-pagination swiper-pagination"></div>
+
+        <!-- Custom Carousel Controls -->
+        <div class="carousel-controls">
+            <button class="carousel-button" id="prev-button">&#8592;</button>
+            <button class="carousel-button" id="next-button">&#8594;</button>
+        </div>
+    </div>
+</section>
+
+<!-- Swiper CSS and JS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper@8.4.7/swiper-bundle.min.css">
+<script src="https://unpkg.com/swiper@8.4.7/swiper-bundle.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const swiperMedia = new Swiper('.card-container', {
+        loop: true,
+        centeredSlides: true,
+        spaceBetween: 20,
+        slidesPerView: 1,
+        grabCursor: true,
+        pagination: {
+            el: '.media-swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            576: { slidesPerView: 1, centeredSlides: true },
+            1024: { slidesPerView: 3, centeredSlides: true, spaceBetween: 20 }
+        },
+    });
+
+    const nextButton = document.getElementById('next-button');
+    const prevButton = document.getElementById('prev-button');
+
+    nextButton.addEventListener('click', () => {
+        swiperMedia.slideNext();
+    });
+
+    prevButton.addEventListener('click', () => {
+        swiperMedia.slidePrev();
+    });
+
+    // Ensure uniform height
+    const cards = document.querySelectorAll('.card-article');
+    let maxHeight = 0;
+    cards.forEach(card => {
+        maxHeight = Math.max(maxHeight, card.offsetHeight);
+    });
+    cards.forEach(card => {
+        card.style.height = maxHeight + 'px';
+    });
+});
+</script>

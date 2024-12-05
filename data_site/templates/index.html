@@ -1,0 +1,303 @@
+{% load bootstrap_icons %}
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="description" content="Transimpex">
+    <meta name="keywords" content="розробка мобільних додатків, розробити мобільний додаток">
+    <title>Transimpex</title>
+    <link rel="canonical" href="https://codeinnovationlab.com">
+    {% include 'blocks/head.html' %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Publications in Media Section */
+        .media-section {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+    
+        .media-carousel {
+    display: flex;
+    overflow-x: scroll; /* Change from hidden to scroll */
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 20px 0;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Hide scrollbar for a clean look */
+}
+.media-carousel::-webkit-scrollbar {
+    display: none; /* Hide scrollbar on Webkit browsers */
+}
+    
+        .media-card {
+            flex: 0 0 calc(33.333% - 20px);
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: left;
+            cursor: pointer;
+            border: 2px solid transparent;
+            scroll-snap-align: start;
+        }
+    
+        .media-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            border: 2px solid #F53838;
+        }
+    
+        .media-card img {
+            width: 100%;
+            border-radius: 15px 15px 0 0;
+            height: 180px;
+            object-fit: cover;
+        }
+    
+        .media-card h3 {
+            font-size: 18px;
+            margin: 15px;
+            font-weight: bold;
+        }
+    
+        .media-card p {
+            margin: 0 15px 15px 15px;
+            font-size: 14px;
+            color: #555;
+        }
+    
+        .carousel-controls {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 10px;
+            padding-right: 10px;
+        }
+    
+        .carousel-button {
+            background: #fff;
+            border: 2px solid #F53838;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+            color: #F53838;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    
+        .carousel-button:hover {
+            background: #F53838;
+            color: #fff;
+        }
+    
+        .indicator {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .contact-us {
+  display: flex;
+  flex-direction: row; /* Горизонтальне вирівнювання за замовчуванням */
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 20px auto; /* Центрування секції */
+  gap: 20px;
+}
+
+/* Адаптивність для маленьких екранів */
+@media (max-width: 768px) {
+  .contact-us {
+    flex-direction: column; /* Стає вертикальною на малих екранах */
+    text-align: center;
+  }
+
+  .contact-button {
+    width: 100%; /* Кнопка розтягується на всю ширину */
+  }
+
+  .btn {
+    width: 100%; /* Кнопка займає всю ширину блоку */
+  }
+}
+
+        /* .indicator-line {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ddd;
+            transition: background-color 0.3s, width 0.3s;
+        }
+    
+        .indicator-line.active {
+            background-color: #F53838;
+            width: 30px;
+            border-radius: 5px;
+        } */
+    </style>
+  </head>
+  <body>
+    <!-- {#<div class="preloader">#}
+        {#  <div class="spinner"></div>#}
+        {#</div>#} -->
+  <!-- ======= Header ======= -->
+  {% include 'blocks/header.html' %} <!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  {% include 'hero.html' %}
+  <!-- End Hero -->
+
+  <!-- About Section -->
+  {% include 'content_pages/about.html' %}
+  <!-- End About Section -->
+
+  <!-- Goals Section -->
+  {% include 'content_pages/goals.html' %}
+
+  {% include 'content_pages/publications.html' %}
+  <!-- End Goals Section -->
+
+  <!-- Publications in Media Section -->
+<!-- Uncomment this section for direct testing of the Publications in Media -->
+
+<!-- Divider Section with Contact Us inside -->
+<div class="horizontal-divider">
+    <section class="contact-us">
+        <div class="contact-text">
+          <h2>Contact Us</h2>
+          <p>Let's make the world a safer place!</p>
+        </div>
+        <div class="contact-button">
+          <button class="btn btn-primary">Contact Us</button>
+        </div>
+    </section>
+</div>
+
+<style>
+    /* Divider Container */
+    .horizontal-divider {
+        display: flex;
+        justify-content: center;
+        padding: 20px 0; /* Adjust padding as needed */
+        background: linear-gradient(to bottom, white 50%, #F8F8F8 50%);
+    }
+
+    /* Contact Us Section */
+    .contact-us {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 60px 80px; /* Increased padding for height */
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        max-width: 1200px;
+        width: 80%; /* Makes Contact Us section fit within the divider */
+        gap: 20px;
+    }
+
+    /* Responsive Contact Us Text Styles */
+    .contact-text h2 {
+        font-size: 2vw; /* Responsive font size for large screens */
+        font-weight: 800;
+        color: #333;
+        margin: 0;
+    }
+
+    .contact-text p {
+        font-size: 1vw; /* Responsive font size for description */
+        color: #6e6d6d;
+        margin-top: 10px;
+    }
+
+    /* Contact Us Button */
+    .contact-button .btn {
+        padding: 25px 60px; /* Extra-large button padding */
+        font-size: 2vw; /* Larger font size for button text */
+        font-weight: 700;
+        background-color: #F53838;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        box-shadow: 0 12px 25px rgba(245, 56, 56, 0.4); /* Stronger shadow */
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .contact-button .btn:hover {
+        transform: scale(1.15); /* Slightly larger on hover */
+        box-shadow: 0 15px 30px rgba(245, 56, 56, 0.5);
+    }
+
+    /* Responsive styling adjustments for smaller screens */
+    @media (max-width: 1200px) {
+        .contact-text h2 {
+            font-size: 32px; /* Fixed size for smaller screens */
+        }
+
+        .contact-text p {
+            font-size: 18px; /* Fixed size for smaller screens */
+        }
+
+        .contact-button .btn {
+            font-size: 20px;
+            padding: 20px 50px;
+        }
+    }
+
+    /* Further adjustments for mobile screens */
+    @media (max-width: 768px) {
+        .contact-us {
+            flex-direction: column;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .contact-text h2 {
+            font-size: 28px;
+        }
+
+        .contact-text p {
+            font-size: 16px;
+        }
+
+        .contact-button .btn {
+            width: 100%;
+            font-size: 18px;
+            padding: 15px 0; /* Center the button and adjust padding on mobile */
+        }
+    }
+</style>
+
+
+
+
+
+  <script>
+      function handleContactClick() {
+          alert('Contact Us button clicked!');
+      }
+  </script>
+  <!-- End Contact Section -->
+
+  <!-- Footer -->
+  {% include 'blocks/footer.html' %}
+
+  <a href="/" class="back-to-top d-flex align-items-center justify-content-center">
+      <i class="bi bi-arrow-up-short"></i>
+  </a>
+  {% include 'blocks/scripts.html' %}
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+{% load i18n %}
+{%load static%}
+
+    <section id="services" class="services">
+
+      <div class="container" data-aos="fade-up">
+        <header class="section-header">
+          <h2>{% trans "Послуги" %}</h2>
+          <p>{% trans "Послуги, які ми надаємо" %}</p>
+        </header>
+
+        <div class="row gy-4 d-flex justify-content-around">
+          {% for i in services%}
+                      <div class="col-lg-5 col-md-6" data-aos="fade-up" data-aos-delay="800">
+                        <div class="service-box blue">
+                        <img src="/media/{{i.img}}" class="img-fluid services-img mb-2" alt="services-details" loading="lazy">
+                        {% autoescape off %}{{i.view_html}}{% endautoescape %}
+                        <a class="read-more" href="services-details/{{i.id}}">{% trans "Детальніше" %}</a>
+                        </div>
+              </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    </section>

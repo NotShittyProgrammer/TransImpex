@@ -1,0 +1,103 @@
+{% load bootstrap_icons %}
+{% load i18n %}
+{%load static%}
+
+<section id="contact" class="contact">
+
+<div class="container" data-aos="fade-up">
+
+<header class="section-header">
+  <h2>{% trans "Контакти" %}</h2>
+  <p>{% trans "Зв`яжіться з нами" %}</p>
+</header>
+
+<div class="row gy-4">
+
+  <div class="col-lg-6">
+
+    <div class="row gy-4">
+      <div class="col-md-6">
+        <div class="info-box">
+        {% bs_icon 'telephone' %}
+          <h3>{% trans "Телефонуйте нам" %}</h3>
+           {% for i in contacts %}
+                <p>{{ i.mobile_phone }}</p>
+            {% endfor %}
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info-box">
+        {% bs_icon 'geo-alt'%}
+          <h3>{% trans "Адреса" %}</h3>
+            {% for i in contacts %}
+                <p>{{ i.address }}</p>
+            {% endfor %}
+        </div>
+      </div>
+     <div class="col-md-6">
+        <div class="info-box">
+        {% bs_icon 'envelope'%}
+          <h3>{% trans "Напишіть нам" %}</h3>
+            {% for i in contacts %}
+                <p>{{ i.email }}</p>
+            {% endfor %}
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info-box">
+        {% bs_icon 'clock'%}
+          <h3>{% trans "Години роботи" %}</h3>
+            {% for i in contacts %}
+                <p>{{ i.schedule_date }}</p>
+                <p>{{ i.schedule_time }}</p>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-lg-6">
+      {% if send_consultation %}
+          {% include 'blocks/thanks_consultation.html'%}
+      {% else %}
+    <form action="" method="post" class="php-email-form" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="row gy-4">
+
+        <div class="col-md-6">
+          <input type="text" name="name" class="form-control" placeholder="{% trans 'Як до вас звертатися?' %}" required>
+        </div>
+
+        <div class="col-md-6 ">
+          <input type="email" class="form-control" name="email" placeholder="{% trans 'Ваша електронна пошта' %}" required>
+        </div>
+
+        <div class="col-md-12">
+          <input type="text" class="form-control" name="topic" placeholder="{% trans 'Тема повідомлення' %}" required>
+        </div>
+
+        <div class="col-md-12">
+          <input type="file" class="form-control" name="file" placeholder="{% trans 'Вибрати файл' %}" required>
+        </div>
+
+        <div class="col-md-12">
+          <textarea class="form-control" name="description" rows="6" placeholder="{% trans 'Текст повідомлення' %}" required></textarea>
+        </div>
+
+        <div class="col-md-12 text-center">
+
+          <button type="submit">{% trans "Відправити повідомлення" %}</button>
+        </div>
+
+      </div>
+    </form>
+    {% endif %}
+  </div>
+
+</div>
+
+</div>
+
+</section>

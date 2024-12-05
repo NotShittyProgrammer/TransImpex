@@ -1,0 +1,36 @@
+{% load static %}
+<style>
+  .breadcrumbs {
+      background-color: #f8f9fa !important; /* Light gray background */
+      padding: 15px 0 !important;
+      color: #000 !important; /* Black text */
+      font-size: 14px !important;
+  }
+  .breadcrumbs ol li a {
+      color: #e63946 !important; /* Red links */
+      text-decoration: none !important;
+      font-weight: bold !important;
+  }
+  .breadcrumbs ol li::after {
+      content: "" !important; /* Separator */
+      color: #6c757d !important;
+  }
+  .breadcrumbs ol li:last-child::after {
+      content: "" !important; /* No separator for the last item */
+  }
+  </style>
+{% block breadcrumbs %}
+<section class="breadcrumbs">
+    <div class="container">
+        <ol>
+            {% for i in breadcrumbs %}
+                {% if i.link %}
+                    <li><a href="{{ i.link }}">{{ i.name }}</a></li>
+                {% else %}
+                    <li>{{ i.name }}</li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+    </div>
+</section>
+{% endblock %}

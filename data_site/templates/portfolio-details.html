@@ -1,0 +1,86 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{i.name}}</title>
+    {%include 'blocks/head.html'%}
+</head>
+<body>
+{#<div class="preloader">#}
+{#  <div class="spinner"></div>#}
+{#</div>#}
+  <!-- ======= Header ======= -->
+{%include 'blocks/header.html'%}
+
+    <!-- ======= Breadcrumbs ======= -->
+{% include 'blocks/breadcrumbs.html' %}
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      {% if i %}
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider">
+                <div id="carouselExampleFade" class="carousel slide carousel-dark carousel-fade" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    {% for j in i.images.all %}
+                        {% if forloop.first %}
+                        <div class="carousel-item active" data-bs-interval="4000">
+                            <img src="/media/{{j.image}}" alt="portfolio-details" class="d-block w-100" loading="lazy">
+                        </div>
+                            {% else %}
+                            <div class="carousel-item" data-bs-interval="2000">
+                            <img src="/media/{{j.image}}" alt="portfolio-details" class="d-block w-100" loading="lazy">
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                    <ol class="carousel-indicators">
+                        {% for j in i.images.all %}
+                            <li data-bs-target="#carouselExampleFade" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+                        {% endfor %}
+                    </ol>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+                        {% autoescape off %}
+                          {{ i.description }}
+                        {% endautoescape %}
+            </div>
+          <div class="col-lg-4">
+            <div class="portfolio-info ">
+              <h1>{{i.name}}</h1>
+              <ul>
+                <li><strong>{% trans "Категорія"%}</strong>: {{i.client}}</li>
+                <li><strong>{% trans "Дата проекту"%}</strong>: {{i.date}}</li>
+                <li><strong>{% trans "Адреса проекту"%}</strong>: <a href="{{i.url}}">{{i.url}}</a></li>
+              </ul>
+            </div>
+              {% include 'blocks/consultation.html'%}
+          </div>
+         <header class="section-header mt-5">
+            <h3>{% translate "Наші схожі роботи" %}</h3>
+          </header>
+                  {% include 'content_pages/portfolio.html'%}
+        </div>
+      </div>
+      {% else %}
+      <p>not projects</p>
+      {% endif %}
+    </section><!-- End Portfolio Details Section -->
+
+  <!-- ======= Footer ======= -->
+{%include 'blocks/footer.html' %}
+{% include 'blocks/scripts.html' %}
+
+</body>
+
+</html>

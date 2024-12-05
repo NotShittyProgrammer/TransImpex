@@ -1,0 +1,47 @@
+{% load bootstrap_icons %}
+{% load i18n %}
+{%load static%}
+
+            <div class="sidebar">
+              <h2 class="sidebar-title">{% translate "Пошук" %}</h2>
+              <div class="sidebar-item search-form">
+                <form action="/blog" method="get">
+                  <input type="text" name="text">
+                  <button type="submit">{% bs_icon 'search' %}</button>
+                </form>
+              </div><!-- End sidebar search formn-->
+
+              <h2 class="sidebar-title">{% trans "Категорії" %}</h2>
+              <div class="sidebar-item categories">
+                <ul>
+                  {%for i in category%}
+                  <li><a href="/blog?category={{i.obj.id}}">{{i.obj.name}} <span>({{i.count}})</span></a></li>
+                  {%endfor%}
+                </ul>
+              </div><!-- End sidebar categories-->
+
+              <h2 class="sidebar-title">{% trans "Останні статті" %}</h2>
+              <div class="sidebar-item recent-posts">
+                {%for i in last_articles%}
+                <div class="post-item clearfix">
+                  <img src="{{i.image.url}}" alt="">
+                  <h3><a href="/blog-single/{{i.id}}">{{i.title}}</a></h3>
+                  <time datetime="2020-01-01">{{i.date}}</time>
+                </div>
+                {% endfor %}
+
+
+
+              </div><!-- End sidebar recent posts-->
+
+              <h2 class="sidebar-title">{% trans "Тег" %}</h2>
+              <div class="sidebar-item tags">
+                <ul>
+                  {%for i in tags%}
+                  <li><a href="/blog?tag={{i.id}}">{{i.name}}</a></li>
+                  {%endfor%}
+                </ul>
+              </div><!-- End sidebar tags-->
+
+            </div><!-- End sidebar -->
+

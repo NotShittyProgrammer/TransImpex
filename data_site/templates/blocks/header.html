@@ -1,0 +1,263 @@
+{% load bootstrap_icons %}
+{% load i18n %}
+{% load static %}
+
+<style>
+    /* Make navbar background transparent with a linear gradient and set fixed height */
+    .header.fixed-top {
+        background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0)) !important; /* Transparent with gradient */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional subtle shadow for depth */
+        z-index: 99;
+        height: 226px; /* Set fixed height */
+        display: flex;
+        justify-content: center;
+        align-items: center; /* Center content vertically */
+        /* vertical-align: middle; */
+        padding: 0;
+    }
+    .offcanvas-logo {
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 240px; /* Adjust width */
+            height: auto;
+        }
+    /* Updated padding for navbar items */
+    .navbar-nav .nav-link {
+        color: #000000 !important; /* Set text color to black */
+        font-weight: bold;
+        padding: 10px 20px; /* Adjusted padding for better spacing */
+    }
+
+    /* Add padding/margin to the nav items around the logo */
+    .navbar-nav .nav-item:nth-child(3) {
+        margin-right: 120px; /* Adds space before the logo */
+    }
+    .navbar-nav .nav-item:nth-child(4) {
+        margin-left: 200px; /* Adds space after the logo */
+    }
+    .nav-item {
+        margin-top: 35px; /* Adds space after the logo */
+    }
+
+    /* Ensure navbar items are centered around the logo */
+    .navbar-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center; /* Ensure vertical alignment with the logo */
+        width: 100%;
+    }
+    .navbar-brand-center {
+    visibility:hidden;
+}
+    /* Adjust padding and position for the logo */
+    .navbar-brand {
+        position: relative;
+        left: 0;
+        transform: translateX(0);
+        z-index: 100; /* Ensure the logo remains on top */
+        height: auto; /* Maintain aspect ratio */
+    }
+    .navbar-brand-center {
+        display: none;
+    }
+    .navbar-brand-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+        width: 240px;
+        height: auto;
+    }
+    /* Adjust for small screens */
+    @media (max-width: 1000px) {
+        .navbar-brand-center {
+    visibility:visible;
+}
+        .header.fixed-top {
+        background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0)) !important; /* Transparent with gradient */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional subtle shadow for depth */
+        z-index: 99;
+        height: 80px; /* Set fixed height */
+        display: flex;
+        justify-content: center;
+        align-items: center; /* Center content vertically */
+        /* vertical-align: middle; */
+        padding: 0;
+    }
+        .navbar-brand {
+            display:flex !important; /* Hide logo in mobile offcanvas mode */
+        }
+        .navbar-brand-center {
+            display: flex;
+        }
+
+        /* Remove margins for mobile */
+        .navbar-nav .nav-item:nth-child(3),
+        .navbar-nav .nav-item:nth-child(4) {
+            margin: 0 !important;
+        }
+
+        /* Properly display offcanvas menu */
+        .offcanvas.offcanvas-start {
+            width: 100%;
+            height: 100vh; /* Fullscreen height */
+        }
+
+        /* Center navigation items in offcanvas */
+        .navbar-nav {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%; /* Full height */
+        }
+
+        /* Move the navbar-toggler (hamburger) button to the left */
+        .navbar-toggler {
+            position: fixed;
+            left: 15px; /* Move the button to the left */
+            top: 30px;
+            z-index: 101; /* Ensure the button stays on top */
+        }
+
+        /* Align the close button to the left */
+        .offcanvas-header .btn-close {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            z-index: 102;
+        }
+
+        /* Transimpex logo at the top of the menu */
+        .offcanvas-logo {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px; /* Adjust width */
+            height: auto;
+        }
+    }
+    /* Make the offcanvas fullscreen */
+    .offcanvas.offcanvas-start {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Fix navbar-toggler button overlap issue with logo */
+    .navbar-toggler {
+        z-index: 101; /* Ensure the button stays on top */
+    }
+
+    .dropdown-menu {
+    background-color: rgba(0, 0, 0, 0.3) !important; /* Semi-transparent dark gray */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    border: none; /* Remove border if needed */
+    backdrop-filter: blur(5px); /* Optional blur for modern browsers */
+    text-align: center; /* Center text inside the dropdown */
+}
+
+.dropdown-menu .dropdown-item {
+    color: #ffffff !important; /* White text */
+    text-align: center; /* Center text for each dropdown item */
+    padding: 10px 20px; /* Add padding for better spacing */
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent light background for hover */
+    color: #e63946 !important; /* Red hover text */
+}
+
+
+</style>
+
+<header id="header" class="header fixed-top">
+    <nav class="navbar navbar-expand-lg bg-transparent"> <!-- Use bg-transparent class here -->
+        <div class="container">
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler navbar-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Regular Logo (centered) for desktop                /services-details/{{i.id}}-->
+            <!-- <a class="navbar-brand mx-auto" href="/">
+                <img src="{% static 'assets/img/trans-logo.svg' %}" alt="Transimpex Logo" loading="lazy" class="d-inline-block align-text-top mr-3" width="240" height="100">
+            </a> -->
+            <a class="navbar-brand-center" href="/">
+                <img src="{% static 'assets/img/trans-logo.svg' %}" alt="Transimpex Logo" loading="lazy" width="240" height="100">
+            </a>
+            
+            <!-- Offcanvas Menu for Mobile -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+
+                <!-- Transimpex logo at the top of the offcanvas menu -->
+                <img src="{% static 'assets/img/trans-logo.svg' %}" alt="Transimpex Logo" class="offcanvas-logo">
+
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">{% trans "Overview" %}</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% trans "Services" %}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% for i in services %}
+                                    <li>
+                                        <a class="dropdown-item" href="/services-details/{{ i.id }}">{{ i.name }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        
+                        
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/#contact">{% trans "Contact" %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/#portfolio">{% trans "Employment" %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/blog">{% trans "Blog" %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">{% trans "Support us" %}</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <div class="dropdown">
+                                <button class="dropdown-toggle lang-dropdown nav-link" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% get_available_languages as LANGUAGES %}
+                                    {% get_language_info_list for LANGUAGES as languages %}
+                                    {% for language in languages %}
+                                        {% if language.code == LANGUAGE_CODE %}
+                                            {{ language.code }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <form action="{% url 'set_language' %}" method="post">
+                                        {% csrf_token %}
+                                        <input name="next" type="hidden" value="{{ redirect_to }}">
+                                        {% for language in languages %}
+                                            <li><button class="dropdown-item lang-item" name="language" value="{{ language.code }}" type="submit">{{ language.code }}</button></li>
+                                        {% endfor %}
+                                    </form>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

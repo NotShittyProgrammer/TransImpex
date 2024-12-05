@@ -1,0 +1,101 @@
+{% load bootstrap_icons %}
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description" content="{{ article.description_blog_single }}">
+    <meta name="keywords" content="{{ article.keywords_blog_single }}">
+    <title>{{ article.title }}</title>
+    {%include 'blocks/head.html'%}
+</head>
+<body>
+{#<div class="preloader">#}
+{#  <div class="spinner"></div>#}
+{#</div>#}
+  <!-- ======= Header ======= -->
+  {% include 'blocks/header.html' %}
+
+{% include 'blocks/breadcrumbs.html' %}
+
+    <!-- ======= Blog Single Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+
+          <div class="col-lg-8 entries">
+
+            <article class="entry entry-single">
+
+              <div class="entry-img">
+                <img src="{{article.image.url}}" alt="" class="img-fluid" loading="lazy">
+              </div>
+
+              <h1 class="entry-title">
+                <a>{{article.title}}</a>
+              </h1>
+
+              <div class="entry-meta">
+                <ul>
+                  <li class="d-flex align-items-center">{% bs_icon 'person' %}<a>{{article.author}}</a></li>
+                  <li class="d-flex align-items-center">{% bs_icon 'clock' %}<a><time datetime="2020-01-01">{{article.author}}</time></a></li>
+                </ul>
+              </div>
+
+              {% autoescape off %}{{article.html}}{% endautoescape %}
+
+              <div class="entry-footer">
+              {% bs_icon 'folder' %}
+                <ul class="cats">
+                  {% for i in article.categories.all %}
+                  <li><a href="/blog?category={{i.id}}">{{i.name}}</a></li>
+                  {% endfor %}
+                </ul>
+                {% bs_icon 'tags' %}
+                <ul class="tags">
+                  {% for i in article.teg.all %}
+                  <li><a href="/blog?tag={{i.id}}">{{i.name}}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+
+            </article><!-- End blog entry -->
+
+          </div><!-- End blog entries list -->
+        <div class="col-lg-4">
+            <div class="blog-left">
+                {% include 'content_pages/filter-search-blog.html'%}
+                {% include 'blocks/consultation.html'%}
+            </div>
+        </div>
+
+        </div>
+        <div id="disqus_thread"></div>
+            <script>
+                /**
+                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                /*
+                var disqus_config = function () {
+                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                };
+                */
+                (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://campfire-2.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+            </script>
+      </div>
+    </section><!-- End Blog Single Section -->
+
+
+{% include 'blocks/footer.html'%}
+
+{% include 'blocks/scripts.html'%}
+
+</body>
+
+</html>

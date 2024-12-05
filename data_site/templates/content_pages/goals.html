@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Goals and Partners</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Section Styling */
+        .section {
+            padding: 0px 0;
+            text-align: center;
+            background-color: #ffffff;
+        }
+    
+        .section h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+    
+        .goal-item {
+            font-family: 'Rubik', sans-serif !important;
+    margin: 20px 0;
+    font-size: 16px;
+    color: #333;
+    text-align: center; /* Center-align text in each column */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.goal-item h4 {
+    font-weight: 700;
+}
+.goal-item p {
+    font-weight: 400;
+}
+/*
+font-family: 'Rubik', sans-serif !important;
+            font-weight: 700 !important;
+            font-size: 12px !important;
+            line-height: 20px !important;
+*/
+        .partner-logo {
+            width: 100px;
+            height: auto;
+            transition: transform 0.3s;
+            margin: 40px; /* Increased margin for more padding between logos */
+        }
+    
+        .partner-logo:hover {
+            transform: scale(1.1);
+        }
+    
+        /* Responsive styling for the goals section */
+        @media (max-width: 767px) {
+            .goal-item {
+                text-align: center;
+            }
+        }
+    
+        @media (min-width: 768px) {
+            .goal-item {
+                font-size: 18px;
+            }
+    
+            .partner-logo {
+                width: 150px;
+            }
+        }
+
+
+        #our-goals .row,
+#our-partners .row {
+    margin-top: 0 !important; /* Override with more specific selector */
+}
+
+#our-partners .container {
+
+    /* padding-top: 20px !important; */
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+}
+
+    </style>
+    
+</head>
+<body>
+
+<!-- Our Goals Section -->
+<section class="section" id="our-goals">
+    <div class="container">
+        <h2>Our Goals</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col goal-item">
+                <h4>Очищення території України</h4>
+                <p>Наша основна мета – забезпечити безпечне середовище для всіх громадян України шляхом очищення територій від вибухонебезпечних предметів. Ми працюємо над розмінуванням сільськогосподарських земель та населених пунктів, щоб повернути життя на ці території. Завдяки нашій діяльності, сотні гектарів землі знову стають доступними для використання, а жителі отримують можливість повернутися до своїх домівок.</p>
+            </div>
+            <div class="col goal-item">
+                <h4>Подолання викликів сфери гуманітарного розмінування</h4>
+                <p>Сфера гуманітарного розмінування стикається з низкою викликів, таких як, неурегульовані законодавчі процедури, кадровий голод та багато інших питань. Ми працюємо над подоланням цих труднощів, співпрацюючи з урядовими та неурядовими організаціями, створивши для цього Українську національну асоціацію з гуманітарного розмінування, яка займається регулюванням цих процесів.</p>
+            </div>
+            <div class="col goal-item">
+                <h4>Навчання спеціалістів</h4>
+                <p>Для забезпечення якісного розмінування ми створили спеціалізовану школу для підготовки саперів. Наші навчальні програми включають теоретичну підготовку та практичні заняття з використанням найсучаснішого обладнання. Ми прагнемо підготувати висококваліфікованих спеціалістів, здатних ефективно виконувати завдання з розмінування в будь-яких умовах.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% load static %}
+<!-- Our Partners Section -->
+<section class="section" id="our-partners">
+    <div class="container">
+        <h2>Our Partners</h2>
+        <div class="row row-cols-2 row-cols-md-4 g-4 justify-content-center">
+            <div class="col">
+                <a href="https://dsns.gov.ua/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/DSNS_emblem_2016.svg/1200px-DSNS_emblem_2016.svg.png" alt="ДСНС" class="partner-logo">
+                </a>
+            </div>
+            <div class="col">
+                <a href="https://www.mil.gov.ua/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Emblem_of_the_Ministry_of_Defence_of_Ukraine.svg" alt="Мін оборони" class="partner-logo">
+                </a>
+            </div>
+            <div class="col">
+                <a href="https://www.me.gov.ua/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Logo_of_Ministry_of_Economic_Development_and_Trade_of_Ukraine_1.svg/1200px-Logo_of_Ministry_of_Economic_Development_and_Trade_of_Ukraine_1.svg.png" alt="Мін економіки" class="partner-logo">
+                </a>
+            </div>
+            <div class="col">
+                <a href="https://ua-demining.com/uk/" target="_blank">
+                    <img src="https://ua-demining.com/wp-content/uploads/2024/05/unhda_eng_new.png" alt="UNHDA" class="partner-logo">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

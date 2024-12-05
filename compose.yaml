@@ -1,0 +1,9 @@
+services:
+  web:
+    container_name: transimpex
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app  # This ensures your local code syncs with the container

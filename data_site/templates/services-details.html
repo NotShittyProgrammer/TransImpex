@@ -1,0 +1,169 @@
+{% load bootstrap_icons %}
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% for i in services %}
+    <meta name="description" content="{{ i.description_service }}">
+    <meta name="keywords" content="{{ i.keywords_service }}">
+    <title>{{ i.title_service }}</title>
+    {% endfor %}
+    {%include 'blocks/head.html'%}
+</head>
+<style>
+
+  /* Ensure content starts below the fixed header */
+body {
+    margin-top: 226px; /* Match the height of the fixed header */
+}
+
+/* For smaller screens, adjust the margin-top dynamically */
+@media (max-width: 1000px) {
+    body {
+        margin-top: 120px; /* Match the height of the smaller header */
+    }
+}
+
+.header {
+    background-color: #ffffff !important; /* White background */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1) !important; /* Subtle shadow for depth */
+}
+.header .navbar-nav .nav-link {
+    color: #000 !important; /* Black text for navigation items */
+    font-weight: bold !important;
+}
+.header .navbar-nav .nav-link:hover {
+    color: #e63946 !important; /* Red color for hover state */
+}
+
+.services-details-title {
+    font-size: 32px; /* Adjust the font size */
+    font-weight: bold; /* Make the title bold */
+    color: #000000; /* Set the text color to red */
+    text-align: left; /* Center the title */
+    margin-top: 20px; /* Add space above */
+    margin-bottom: 20px; /* Add space below */
+    line-height: 1.4; /* Adjust line height for readability */
+}
+
+@media (max-width: 768px) {
+    .services-details-title {
+        font-size: 24px; /* Smaller font size for mobile */
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+/* Style for services title */
+.services-details-list h2 {
+    color: #003566; /* Update to match your site's palette */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Style for individual service links */
+.service-item {
+    margin-bottom: 10px;
+}
+
+.service-link {
+    text-decoration: none; /* Remove underline */
+    color: #0056b3; /* Blue from site's palette */
+    font-weight: 500; /* Semi-bold text */
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.service-link:hover {
+    color: #d62828; /* Slightly red hover effect */
+    text-decoration: underline; /* Add underline on hover */
+}
+
+/* Ensure links are clickable in all cases */
+.service-item {
+    position: relative;
+    z-index: 1050;
+}
+
+.service-item {
+    border: 1px solid red; /* Add borders to see link areas */
+}
+
+.service-link {
+    position: relative;
+    z-index: 1050; /* Ensure link is on top */
+}
+
+/* Ensure links are on top and clickable */
+.service-link {
+    text-decoration: none;
+    color: #0056b3;
+    font-weight: 500;
+    position: relative;
+    z-index: 1050; /* Bring above other elements */
+    transition: color 0.3s ease;
+}
+
+.service-link:hover {
+    color: #d62828;
+    text-decoration: underline;
+}
+.offcanvas {
+    z-index: -1; /* Push it behind the content */
+}
+
+.offcanvas.show {
+    z-index: 1000; /* Bring it above when active */
+}
+
+</style>
+<body>
+{#<div class="preloader">#}
+{#  <div class="spinner"></div>#}
+{#</div>#}
+
+  <!-- ======= Header ======= -->
+  {% include 'blocks/header.html' %}
+  {% include 'blocks/breadcrumbs.html'%}
+<!-- End Header -->
+<section id="services-details" class="services-details">
+<div class="container">
+    <div class="row">
+        <h1 class="services-details-title my-4">{{ content.name }}</h1>
+        <div class="col-lg-8">
+            {% autoescape off %}
+                {{content.body_html}}
+                {% include 'blocks/button-contact.html'%}
+            {% endautoescape %}
+        </div>
+        <div class="col-lg-4">
+          <div class="services-details-list">
+            <h2>{% trans "Перегляньте наші послуги" %}</h2>
+            {% for i in services %}
+                <p class="service-item">
+                    <a href="/services-details/{{ i.id }}" class="service-link">
+                        {% bs_icon 'chevron-right' %} {{ i.name }}
+                    </a>
+                </p>
+            {% endfor %}
+        </div>
+        
+        
+        
+            <!-- {% if send_consultation %}
+                {% include 'blocks/thanks_consultation.html'%}
+            {% else %}
+                {% include 'blocks/consultation.html'%}
+            {% endif %} -->
+        </div>
+    </div>
+
+</div>
+</section>
+  <!-- ======= Footer ======= -->
+{% include 'blocks/footer.html'%}
+  <!-- End Footer -->
+
+{% include 'blocks/scripts.html'%}
+</body>
+
+</html>

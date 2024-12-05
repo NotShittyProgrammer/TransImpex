@@ -1,0 +1,47 @@
+{% load bootstrap_icons %}
+{% load i18n %}
+{%load static%}
+
+    <div class="portfolio">
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">{% trans 'Усе' %}</li>
+              {% for i in category%}
+              <li data-filter=".Category-{{i.id}}" >{{i.name}}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
+          {%for i in projects%}
+          <div class="col-lg-4 col-md-6 portfolio-item Category-{{i.category.id}}">
+            <div class="portfolio-wrap">
+                <img src="/media/{{i.main_image}}" class="img-fluid portfolio-img" alt="portfolio-details" loading="lazy">
+
+
+              <div class="portfolio-info">
+                <h3>{{i.name}}</h3>
+                <p>{{i.category}}</p>
+                <div class="portfolio-links">
+                  <a href="/media/{{i.images.first.image}}" data-gallery="portfolioGallery" class="portfokio-lightbox">{% bs_icon 'plus' %}</a>
+                    <a href="/portfolio-details/{{i.id}}" title="More Details">{% bs_icon 'link' %}</a>
+                </div>
+                  {% for j in i.images.all %}
+              <div class="portfolio-links_no_display">
+              {% if j.image %}
+                  <a href="/media/{{j.image}}" data-gallery="portfolioGallery" class="portfokio-lightbox"></a>
+              {% endif %}
+                </div>
+                     {% endfor %}
+              </div>
+            </div>
+          </div>
+
+{% endfor %}
+        </div>
+
+    </div>

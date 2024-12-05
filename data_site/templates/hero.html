@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transimpex</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    {% load i18n %}
+    <style>
+        /* Hero Section Styles */
+        #hero {
+            width: 100%;
+            height: 100vh;
+            background: url("{% static 'assets/img/hero-bg.png' %}") top center no-repeat;
+            background-size: cover;
+            padding: 20px 0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: left;
+        }
+        #hero h1 {
+            font-family: 'Rubik', sans-serif;
+            white-space: nowrap;
+            font-size: 45px;
+            font-weight: 700;
+            line-height: 50px;
+            color: #ffffff;
+            margin-top: 100px;
+        }
+
+        #hero h2 {
+            font-family: 'Rubik', sans-serif;
+            font-size: 27px;
+            font-weight: 400;
+            line-height: 30px;
+            color: #ffffff;
+            margin-bottom: 40px;
+        }
+
+        /* Button Styles */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        /* Custom Button Styling */
+        .btn-primary, .btn-outline-primary {
+            font-family: 'Rubik', sans-serif !important;
+            font-weight: 700 !important;
+            font-size: 12px !important;
+            line-height: 20px !important;
+            color: #ffffff !important;
+            padding: 10px 30px !important;
+            border-radius: 8px !important;
+            transition: all 0.3s ease !important;
+            text-transform: uppercase !important;
+        }
+
+        .btn-primary {
+            background-color: #F53838 !important;
+            border: none !important;
+        }
+
+        .btn-outline-primary {
+            border: 5px solid #F53838 !important;
+            color: #ffffff !important;
+            background: transparent;
+        }
+
+        .btn-primary:hover, .btn-outline-primary:hover {
+            background-color: #d12727 !important;
+            color: #ffffff !important;
+        }
+
+        /* Social Media Links */
+        .hero .social-links {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .social-links .btn {
+            width: 60px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0 27px 27px 0;
+            background-color: #F53838;
+            color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .social-links .btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 1.0);
+            padding: 30px 30px;
+            border-radius: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            width: 80%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Stats Item */
+        .stats-item {
+            flex: 1 1 calc(33.333% - 20px);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 20px;
+            border-right: 1px solid #ddd;
+        }
+        .stats-item:last-child {
+            border-right: none;
+        }
+
+        /* Icon and Text */
+        .stats-icon {
+            width: 55px;
+            height: 55px;
+            background-color: #fdecea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stats-text h3 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: bold;
+            color: #0B132A;
+        }
+
+        .stats-text p {
+            margin: 0;
+            font-size: 14px;
+            color: #4F5665;
+        }
+
+        .row {
+            margin-top: 20vh !important;
+        }
+
+        @media (max-width: 1000px) {
+            #hero h1, #hero h2, .btn-container {
+                text-align: center;
+                align-items: center;
+            }
+
+            .btn-container a {
+                width: 90%;
+                max-width: 300px;
+            }
+            /* Adjust stats section for mobile */
+            .stats-section {
+                width: 90%;
+                padding: 20px 15px;
+                bottom: 50px;
+            }
+
+            .btn-primary {
+                align-self: center;
+            }
+            #hero h1 {
+                font-size: 24px;
+                line-height: 36px;
+                white-space: normal;
+                margin-top: 20px;
+            }
+            #hero h2 {
+                font-size: 18px;
+                line-height: 26px;
+            }
+            .stats-text h3 {
+                margin: 0;
+                font-size: 16px;
+                font-weight: bold;
+                color: #0B132A;
+            }
+
+            .stats-text p {
+                margin: 0;
+                font-size: 10px;
+                color: #4F5665;
+            }
+            .stats-icon {
+                width: 35px;
+                height: 35px;
+                background-color: #fdecea;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .container {
+                padding-top: 20px !important;
+                padding-left: 70px !important;
+                padding-right: 70px !important;
+            }
+
+            /* Adjust stats section positioning and padding for mobile */
+            .stats-section {
+                padding: 20px 15px;
+            }
+
+            .stats-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                border-right: none;
+                padding: 15px 0;
+            }
+
+            /* Adjust button container on mobile */
+            .btn-container {
+                gap: 10px;
+                padding-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section id="hero" class="hero d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 d-flex flex-column justify-content-center">
+                    <h1 data-aos="fade-up">{% trans "National Mine Action Operator" %}</h1>
+                    <h2 data-aos="fade-up" data-aos-delay="100">{% trans "Let's make the world a safer place!" %}</h2>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-center text-lg-start btn-container">
+                            <a href="/" class="btn btn-primary btn-lg">{% trans "About Us" %}</a>
+                            <a href="/anti-mine" class="btn btn-outline-primary btn-lg">{% trans "Anti-mine Activity" %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <div class="stats-item">
+                    <div class="stats-icon">
+                        <img src="{% static 'assets/img/user.svg' %}" alt="{% trans "User Icon" %}">
+                    </div>
+                    <div class="stats-text">
+                        <h3>285+</h3>
+                        <p>{% trans "Employees" %}</p>
+                    </div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-icon">
+                        <img src="{% static 'assets/img/location.svg' %}" alt="{% trans "Location Icon" %}">
+                    </div>
+                    <div class="stats-text">
+                        <p>{% trans "Cleared more than" %}</p>
+                        <h3>1,300</h3>
+                        <p>{% trans "of contaminated land." %}</p>
+                    </div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-icon">
+                        <img src="{% static 'assets/img/target.svg' %}" alt="{% trans "Target Icon" %}">
+                    </div>
+                    <div class="stats-text">
+                        <p>{% trans "Disposed over" %}</p>
+                        <h3>{% trans "7,000 tons" %}</h3>
+                        <p>{% trans "of explosive hazards" %}</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    
+        <!-- Social Media Links -->
+        <!-- <div class="social-links">
+            <a href="#" class="btn btn-danger">
+                <img src="{% static 'assets/img/inst.svg' %}" alt="{% trans "Instagram" %}">
+            </a>
+            <a href="#" class="btn btn-danger">
+                <img src="{% static 'assets/img/face.svg' %}" alt="{% trans "Facebook" %}">
+            </a>
+            <a href="#" class="btn btn-danger">
+                <img src="{% static 'assets/img/youtube.svg' %}" alt="{% trans "YouTube" %}">
+            </a>
+        </div> -->
+    </section>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

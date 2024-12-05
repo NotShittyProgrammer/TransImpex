@@ -1,0 +1,100 @@
+{% load bootstrap_icons %}
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Блог TRANSIMPEX</title>
+    <meta name="description" content="dobriy ya vasiliy fufufnjne ekvkrn">
+    {%include 'blocks/head.html'%}
+    <link rel="canonical" href="https://codeinnovationlab.com/blog">
+</head>
+<body>
+{#<div class="preloader">#}
+{#  <div class="spinner"></div>#}
+{#</div>#}
+
+  <!-- ======= Header ======= -->
+  {% include 'blocks/header.html' %}
+
+    <!-- ======= Breadcrumbs ======= -->
+{% include 'blocks/breadcrumbs.html' %}
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
+        <div class="row">
+          <div class="col-lg-8 entries">
+          {% for i in article%}
+            <article class="entry">
+
+              <div class="entry-img">
+                <img src="{{i.image}}" alt="" class="img-fluid" loading="lazy">
+              </div>
+
+              <h1 class="entry-title">
+                <a href="blog-single/{{i.id}}">{{i.title}}</a>
+              </h1>
+
+              <div class="entry-meta">
+                <ul>
+                  <li class="d-flex align-items-center">{% bs_icon 'person' %}<a href="blog-single/{{i.id}}">{{i.author}}</a></li>
+                  <li class="d-flex align-items-center">{% bs_icon 'clock' %}<a href="blog-single/{{i.id}}"><time datetime="2020-01-01">{{i.date}}</time></a></li>
+                  <li class="d-flex align-items-center">
+                    <div class="sidebar-item tags">
+                <ul>
+                  {%for j in i.teg.all%}<i></i>#
+                  <li><a href="#">{{j.name}}</a></li>
+                  {%endfor%}
+                </ul>
+              </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="entry-content">
+                <p>
+                  {{i.description}}
+                </p>
+                <div class="read-more">
+                  <a href="blog-single/{{i.id}}">{% translate "Детальніше" %}</a>
+                </div>
+              </div>
+
+            </article><!-- End blog entry -->
+{% endfor %}
+
+            <div class="blog-pagination ">
+              <ul class="justify-content-center">
+                {% for i in pages%}
+                {% if i == cur_page %}
+                <li class="active"><a href="?page={{i}}">{{i}}</a></li>
+                {%else%}
+                {% if '?' in request.get_full_path%}
+                <li><a href="{{request.get_full_path}}&&page={{i}}">{{i}}</a></li>
+                {%else%}
+                <li><a href="{{request.get_full_path}}?page={{i}}">{{i}}</a></li>
+                {%endif%}
+                {%endif%}
+                {% endfor%}
+              </ul>
+            </div>
+
+          </div><!-- End blog entries list -->
+            <div class="col-lg-4">
+                <div class="blog-left">
+                {% include 'content_pages/filter-search-blog.html'%}
+                {% include 'blocks/consultation.html'%}
+            </div>
+            </div>
+        </div>
+
+      </div>
+    </section><!-- End Blog Section -->
+{% include 'blocks/footer.html'%}
+  <!-- End Footer -->
+
+{% include 'blocks/scripts.html'%}
+
+</body>
+
+</html>

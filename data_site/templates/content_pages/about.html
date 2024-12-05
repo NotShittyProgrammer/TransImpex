@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transimpes - Certificates</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <style>
+        /* Services Section Styles *//* Services Section Styles */
+        /* Services Section Styles */
+#about {
+    padding: 50px 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+#about .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+.about img {
+    min-width: 300px;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 900px !important; /* Larger image for desktop */
+    border-radius: 10px !important;
+    object-fit: cover !important;
+}
+
+.about .content {
+    text-align: left !important;
+    padding-right: 20px !important;
+}
+
+.about .content h2 {
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    color: #0B132A !important;
+    margin-bottom: 20px !important;
+    font-family: 'Rubik', sans-serif !important;
+    text-align: left;
+}
+
+.about .content p {
+    text-align: left;
+    font-size: 14px !important;
+    color: #4F5665 !important;
+    margin-bottom: 20px !important;
+    font-family: 'Rubik', sans-serif !important;
+    font-weight: 700 !important;
+}
+
+.about .service-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 20px 0 !important;
+    text-align: left !important;
+}
+
+.about .service-list li {
+    display: flex !important;
+    align-items: center !important;
+    font-size: 14px !important;
+    color: #4F5665 !important;
+    margin-bottom: 15px !important;
+    font-family: 'Rubik', sans-serif !important;
+    font-weight: 400 !important;
+}
+
+.about .service-list li img {
+    min-width: 20px;
+    margin-right: 10px !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.details-btn {
+    margin-top: 20px !important;
+    padding: 18px 62px !important;
+    border: none !important;
+    border-radius: 12px !important;
+    background: linear-gradient(90deg, rgba(255, 140, 0, 1) 0%, rgba(255, 85, 0, 1) 100%) !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    font-family: 'Rubik', sans-serif !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+    transition: all 0.3s ease !important;
+    text-align: left !important; /* Align left on desktop */
+}
+
+.details-btn:hover {
+    background: linear-gradient(90deg, rgba(255, 85, 0, 1) 0%, rgba(255, 140, 0, 1) 100%) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2) !important;
+}
+        /* Responsive Layout */
+        @media (max-width: 992px) {
+            #about {
+                flex-direction: column !important;
+                text-align: left !important;
+            }
+
+            .about .content {
+                text-align: left !important;
+                padding: 10px !important;
+            }
+
+            .about .service-list {
+        text-align: left !important;
+    }
+    .details-btn {
+        margin: 20px auto !important; /* Center button on mobile */
+        text-align: center !important;
+        padding: 12px 12px !important;
+        width: 100%; /* Full width button on mobile */
+    }
+    .about img {
+        max-width: 100% !important; /* Full width image on mobile */
+    }
+
+            .about .content h2 {
+                font-size: 32px !important;
+            }
+
+            .details-btn {
+                margin: 0 auto !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about .content h2 {
+                font-size: 28px !important;
+            }
+
+            .about img {
+                max-width: 100% !important;
+            }
+        }
+        /* Container Styles */
+        #certificates {
+    padding: 60px 0;
+    background-color: #ffffff;
+    text-align: center;
+    position: relative; /* Allows absolute positioning inside */
+}
+
+        #certificates h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        .certificate-slider {
+    max-width: 90%;
+    max-height: 70%;
+    margin: 0 auto;
+    padding-bottom: 60px !important; /* Space for pagination */
+}
+
+.swiper-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    bottom: 20px; /* Adjusts the distance from the bottom of the section */
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.swiper-slide {
+    padding: 0 10px; /* Ensure consistent padding within each slide */
+}
+
+.certificate-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s;
+    display: inline-block; /* Ensures the card size matches the image */
+    width: auto;
+}
+
+.certificate-card img {
+    display: block; /* Removes any whitespace below the image */
+    width: 100%;
+    height: auto; /* Makes the image height responsive to its width */
+    border-radius: 10px;
+    object-fit: cover;
+    max-height: 580px; /* Max height constraint to keep layout balanced */
+}
+
+
+
+/* Custom Indicators */
+.swiper-pagination-bullet {
+    width: 20px !important;
+    height: 20px !important;
+    background-color: #000000c4 !important;
+    border: 2px solid #fff !important;
+    opacity: 1;
+    border-radius: 50%;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+    background: linear-gradient(135deg, #E42320, #FFD500) !important; /* Gradient for active state */
+    transform: scale(1.2);
+}
+
+        /* Modal Styling */
+        .modal-backdrop {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .fullscreen-modal .modal-content {
+            background: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fullscreen-modal img {
+            max-height: 90vh;
+            width: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .fullscreen-modal .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Map Section */
+        #past-projects {
+            padding: 60px 0;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        #past-projects h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .map-container {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .map-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .map-marker {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            background-color: rgba(230, 57, 70, 0.8);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .map-marker:hover {
+            transform: scale(1.2);
+        }
+        
+    </style>
+</head>
+
+<body>
+    {% load bootstrap_icons %}
+    {% load i18n %}
+    {% load static %}
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+            <div class="row2 gx-0 d-flex flex-column flex-lg-row align-items-center text-center">
+                <!-- Image on the left side -->
+                <div class="col-lg-6 d-flex align-items-center justify-content-center" data-aos="zoom-out" data-aos-delay="200">
+                    <img src="{% static 'assets/img/about.svg' %}" class="img-fluid rounded" alt="Фото" loading="lazy">
+                </div>
+                <!-- Content on the right side -->
+                <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="content">
+                        <h2>{% trans "Services" %}</h2>
+                        <p>{% trans "Company activities" %}</p>
+                        <ul class="service-list">
+                            <li>
+                                <img src="{% static 'assets/img/tick.svg' %}" alt="Tick">
+                                {% trans "Education and training" %}
+                            </li>
+                            <li>
+                                <img src="{% static 'assets/img/tick.svg' %}" alt="Tick">
+                                {% trans "Operations" %}
+                            </li>
+                            <li>
+                                <img src="{% static 'assets/img/tick.svg' %}" alt="Tick">
+                                {% trans "Recognition of the company" %}
+                            </li>
+                            <li>
+                                <img src="{% static 'assets/img/tick.svg' %}" alt="Tick">
+                                {% trans "Goals and objectives" %}
+                            </li>
+                        </ul>
+                        <a href="/activities" class="details-btn">{% trans "Details of our activities" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Certificate Slider Section -->
+    <section id="certificates" class="certificates">
+        <h2>Our Credentials are Verified</h2>
+        <p>We've successfully completed certification, granting us the authority to participate in humanitarian demining.</p>
+        
+        <!-- Swiper Container for Certificates -->
+        <div class="swiper certificate-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="certificate-card" data-bs-toggle="modal" data-bs-target="#fullscreenModal" data-img="{% static 'assets/img/certificate_page_1.png' %}">
+                        <img src="{% static 'assets/img/certificate_page_1.png' %}" alt="Certificate 1">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="certificate-card" data-bs-toggle="modal" data-bs-target="#fullscreenModal" data-img="{% static 'assets/img/certificate_page_2.png' %}">
+                        <img src="{% static 'assets/img/certificate_page_2.png' %}" alt="Certificate 2">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="certificate-card" data-bs-toggle="modal" data-bs-target="#fullscreenModal" data-img="{% static 'assets/img/certificate_page_3.png' %}">
+                        <img src="{% static 'assets/img/certificate_page_3.png' %}" alt="Certificate 3">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="certificate-card" data-bs-toggle="modal" data-bs-target="#fullscreenModal" data-img="{% static 'assets/img/certificate_page_4.png' %}">
+                        <img src="{% static 'assets/img/certificate_page_4.png' %}" alt="Certificate 4">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="certificate-card" data-bs-toggle="modal" data-bs-target="#fullscreenModal" data-img="{% static 'assets/img/certificate_page_5.png' %}">
+                        <img src="{% static 'assets/img/certificate_page_5.png' %}" alt="Certificate 5">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="certificate-card" data-bs-toggle="modal" data-bs-target="#fullscreenModal" data-img="{% static 'assets/img/certificate_page_5.png' %}">
+                        <img src="{% static 'assets/img/certificate_page_6.png' %}" alt="Certificate 5">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="certificate-card" data-bs-toggle="modal" data-bs-target="#fullscreenModal" data-img="{% static 'assets/img/certificate_page_5.png' %}">
+                        <img src="{% static 'assets/img/certificate_page_7.png' %}" alt="Certificate 5">
+                    </div>
+                </div>
+            </div>
+            <!-- Custom Pagination -->
+            <div class="swiper-pagination"></div>  
+        </div>
+    </section>
+
+    <!-- Fullscreen Modal -->
+    <div class="modal fade fullscreen-modal" id="fullscreenModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <span class="close" data-bs-dismiss="modal">&times;</span>
+                <img id="modal-image" src="" alt="Fullscreen Certificate">
+            </div>
+        </div>
+    </div>
+
+    <!-- Past Projects Map Section -->
+    <section id="past-projects" class="past-projects">
+        <h2>Past Projects Map</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada scelerisque sollicitudin.</p>
+        <div class="map-container">
+            <img src="{% static 'assets/img/global.svg' %}" alt="Global Map">
+            <!-- Add markers as needed -->
+            <!-- <div class="map-marker" style="top: 50%; left: 50%;"></div> -->
+        </div>
+    </section>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Swiper CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8.4.7/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper@8.4.7/swiper-bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Swiper for the certificate slider
+            const swiperCertificates = new Swiper('.certificate-slider', {
+    loop: true,
+    spaceBetween: 100, // Increased spacing between cards
+    slidesPerView: 3, // Show closer to 3 cards, but leave extra space for larger images
+    grabCursor: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    breakpoints: {
+                    0: { slidesPerView: 1, spaceBetween: 10 },
+                    576: { slidesPerView: 1, spaceBetween: 15 },
+                    768: { slidesPerView: 2, spaceBetween: 15 },
+                    992: { slidesPerView: 2, spaceBetween: 20 },
+                    1200: { slidesPerView: 3, spaceBetween: 20 },
+                },
+});
+
+
+            // Show clicked image in modal
+            document.querySelectorAll('.certificate-card').forEach((card) => {
+                card.addEventListener('click', function () {
+                    const imgSrc = this.getAttribute('data-img');
+                    document.getElementById('modal-image').src = imgSrc;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

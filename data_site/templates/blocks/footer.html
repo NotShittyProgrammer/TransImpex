@@ -1,0 +1,156 @@
+{% load bootstrap_icons %}
+{% load i18n %}
+{% load static %}
+
+<footer id="footer" class="footer">
+    <div class="container">
+        <div class="row gy-4" style="margin-top: 0;">
+            <!-- Logo and Info Section -->
+            <div class="col-lg-4 col-md-6 footer-info text-left">
+                <a href="/" class="logo d-flex align-items-center">
+                    <img src="{% static 'assets/img/foot.svg' %}" alt="Logo" loading="lazy" width="50">
+                    <h3>Transimpex Demining</h3>
+                </a>
+                <p>National Mine Action Operator<br>Let's make the world a safer place!</p>
+
+                <!-- Social Links -->
+                <!-- <div class="social-links mt-4 d-flex justify-content-start">
+                    {% for i in contacts %}
+                    <a href="{{ i.telegram_link }}" class="telegram" target="_blank">{% bs_icon 'telegram' %}</a>
+                    <a href="{{ i.facebook_link }}" class="facebook" target="_blank">{% bs_icon 'facebook' %}</a>
+                    <a href="{{ i.instagram_link }}" class="instagram" target="_blank">{% bs_icon 'instagram' %}</a>
+                    {% endfor %}
+                </div> -->
+
+                <!-- Copyright Text -->
+                <div class="copyright mt-3 text-left">
+                    &copy;2024 Transimpex Demining
+                </div>
+            </div>
+
+            <!-- Contacts Section -->
+            <div class="col-lg-4 col-md-6 footer-contact">
+                <h4>{% translate "Contacts" %}</h4>
+                <p>
+                    {% for i in contacts %}
+                    <a href="tel:{{ i.mobile_phone }}">{{ i.mobile_phone }}</a><br>
+                    <a href="mailto:{{ i.email }}">{{ i.email }}</a><br><br>
+                    {{ i.address }}<br>
+                    {% endfor %}
+                </p>
+            </div>
+
+            <!-- Overview Links Section -->
+            <div class="col-lg-4 col-md-6 footer-links">
+                <h4>{% translate "Overview" %}</h4>
+                <ul>
+                    <li><a href="/services">{% translate "Services" %}</a></li>
+                    <li><a href="/contacts">{% translate "Contacts" %}</a></li>
+                    <li><a href="/employment">{% translate "Employment" %}</a></li>
+                    <li><a href="/blog">{% translate "Blog" %}</a></li>
+                    <li><a href="/support">{% translate "Support" %}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        background: #F8F8F8;
+        padding: 40px 0;
+        font-size: 14px;
+        color: #333;
+    }
+
+    .footer h4 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #1a1a1a;
+    }
+
+    .footer .logo h3 {
+        font-size: 24px;
+        margin-left: 10px;
+        color: #1a1a1a;
+    }
+
+    .footer .footer-info p {
+        font-size: 14px;
+        color: #555;
+        margin-top: 10px;
+    }
+
+    /* Aligning social links and ensuring they are aligned to the left */
+    .footer .social-links {
+        margin-top: 15px;
+        justify-content: flex-start !important; /* Align to the left */
+    }
+
+    .footer .social-links a {
+        font-size: 18px !important;
+        display: inline-block !important;
+        background: #e63946 !important;
+        color: #fff !important;
+        padding: 10px !important;
+        border-radius: 50% !important;
+        transition: 0.3s !important;
+        margin: 0 8px 0 0 !important; /* Add space to the right for even spacing */
+    }
+
+    .footer .social-links a:hover {
+        background: #d62828 !important;
+    }
+
+    /* Adjusting the copyright section to align left */
+    .copyright {
+        text-align: left !important;
+        padding-top: 10px;
+        color: #777;
+        font-size: 13px;
+        font-family: 'Rubik', sans-serif;
+        letter-spacing: 0.5px;
+    }
+
+    .footer .footer-contact a {
+        color: #e63946 !important;
+        text-decoration: none;
+    }
+
+    .footer .footer-links ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer .footer-links ul li {
+        padding: 5px 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .footer .footer-links ul li a {
+        color: #555;
+        transition: 0.3s;
+        text-decoration: none;
+        margin-left: 10px;
+    }
+
+    .footer .footer-links ul li a:hover {
+        color: #e63946;
+    }
+
+    .footer-contact {
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .footer-contact strong {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .footer .row {
+        margin-top: 0 !important;
+    }
+</style>
